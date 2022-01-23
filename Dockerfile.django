@@ -126,9 +126,9 @@ ENV \
   # DD_CELERY_WORKER_CONCURRENCY="8" \
   # DD_CELERY_WORKER_PREFETCH_MULTIPLIER="128" \
   DD_DATABASE_ENGINE="django.db.backends.mysql" \
-  DD_DATABASE_HOST="mysql" \
+  DD_DATABASE_HOST="defectdojo.cclkqdfetmpp.us-east-1.rds.amazonaws.com" \
   DD_DATABASE_NAME="defectdojo" \
-  DD_DATABASE_PASSWORD="defectdojo" \
+  DD_DATABASE_PASSWORD="PkYMeL2zmv" \
   DD_DATABASE_PORT="3306" \
   DD_DATABASE_USER="defectdojo" \
   DD_INITIALIZE=true \

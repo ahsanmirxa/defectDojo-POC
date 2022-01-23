@@ -45,7 +45,7 @@ spec:
           {{- if .Values.django.ingress.path }}
           path: {{ .Values.django.ingress.path }}
           {{- else }}
-          path: "/"
+          path: "/(.*)"
           {{- end }}
           backend:
             service:
@@ -56,7 +56,7 @@ spec:
         {{- if .Values.django.ingress.path }}
         - path: {{ .Values.django.ingress.path }}
         {{- else }}
-        - path: /
+        - path: /(.*)
         {{- end }}
           backend:
             serviceName: {{ $fullName }}-django

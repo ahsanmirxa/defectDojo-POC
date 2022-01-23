@@ -53,7 +53,7 @@ admin:
   password:
   firstName: Administrator
   lastName: User
-  mail: admin@defectdojo.local
+  mail: admin@egs.com
   secretKey:
   credentialAes256Key:
   metricsHttpAuthPassword:
@@ -149,12 +149,13 @@ django:
     enabled: true
     activateTLS: true
     secretName: defectdojo-tls
-    annotations: {}
-      # Restricts the type of ingress controller that can interact with our chart (nginx, traefik, ...)
-      # kubernetes.io/ingress.class: nginx
-      # Depending on the size and complexity of your scans, you might want to increase the default ingress timeouts if you see repeated 504 Gateway Timeouts
-      # nginx.ingress.kubernetes.io/proxy-read-timeout: "1800"
-      # nginx.ingress.kubernetes.io/proxy-send-timeout: "1800"
+    annotations:
+      kubernetes.io/ingress.class: nginx
+      nginx.ingress.kubernetes.io/proxy-body-size: 50m
+      nginx.ingress.kubernetes.io/rewrite-target: /$1
+      nginx.ingress.kubernetes.io/use-regex: "true"
+      nginx.ingress.kubernetes.io/proxy-read-timeout: "1800"
+      nginx.ingress.kubernetes.io/proxy-send-timeout: "1800"
   nginx:
     tls:
       enabled: false
