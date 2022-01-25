@@ -16,11 +16,11 @@ steps:
     helmVersion: '2.14.1'
     installKubectl: true
 
-#- script: |
-#    helm repo add helm-charts 'https://raw.githubusercontent.com/DefectDojo/django-DefectDojo/helm-charts'
-#    helm repo add bitnami https://charts.bitnami.com/bitnami
+- script: |
+    helm repo add helm-charts 'https://raw.githubusercontent.com/DefectDojo/django-DefectDojo/helm-charts'
+    helm repo add bitnami https://charts.bitnami.com/bitnami
 #    helm dependency update ./helm/defectdojo
-#  displayName: 'Installing Helm Dependencies'
+  displayName: 'Installing Helm Dependencies'
 
 - task: HelmDeploy@0
   inputs:
