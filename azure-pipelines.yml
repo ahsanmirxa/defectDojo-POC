@@ -22,6 +22,12 @@ steps:
     helm dependency update ./helm/defectdojo
   displayName: 'Installing Helm Dependencies'
 
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(System.DefaultWorkingDirectory)/helm/defectdojo'
+    Contents: '**'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+  
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
