@@ -19,13 +19,13 @@ steps:
 - script: |
     helm repo add helm-charts 'https://raw.githubusercontent.com/DefectDojo/django-DefectDojo/helm-charts'
     helm repo add bitnami https://charts.bitnami.com/bitnami
-#    helm dependency update ./helm/defectdojo
   displayName: 'Installing Helm Dependencies'
 
 - task: HelmDeploy@0
   inputs:
     command: 'package'
     chartPath: '$(System.DefaultWorkingDirectory)/helm/defectdojo'
+    chartVersion: '1.0'
     updateDependency: true
 
 - task: CopyFiles@2
