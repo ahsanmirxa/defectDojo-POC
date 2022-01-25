@@ -16,17 +16,24 @@ steps:
     helmVersion: '2.14.1'
     installKubectl: true
 
-- script: |
-    helm repo add helm-charts 'https://raw.githubusercontent.com/DefectDojo/django-DefectDojo/helm-charts'
-    helm repo add bitnami https://charts.bitnami.com/bitnami
-    helm dependency update ./helm/defectdojo
-  displayName: 'Installing Helm Dependencies'
+#- script: |
+#    helm repo add helm-charts 'https://raw.githubusercontent.com/DefectDojo/django-DefectDojo/helm-charts'
+#    helm repo add bitnami https://charts.bitnami.com/bitnami
+#    helm dependency update ./helm/defectdojo
+#  displayName: 'Installing Helm Dependencies'
+
+- task: HelmDeploy@0
+  inputs:
+    command: 'package'
+    chartPath: '$(System.DefaultWorkingDirectory)/helm/defectdojo'
+    updateDependency: true
 
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '$(System.DefaultWorkingDirectory)/helm/defectdojo'
-    Contents: '**'
+    SourceFolder: '$(System.DefaultWorkingDirectory)'
+    Contents: '*.tgz'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
+  displayName: 'Copying tgz file'
   
 - task: PublishBuildArtifacts@1
   inputs:
